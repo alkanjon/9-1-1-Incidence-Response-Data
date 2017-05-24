@@ -12,6 +12,7 @@ URI <- "https://data.seattle.gov/resource/pu5n-trf4.json"
 response <- GET(URI)
 body <- content(response, "text")
 SPD.data <- fromJSON(body)
+SPD.data <- flatten(SPD.data)
 
 # Start shinyServer
 shinyServer(function(input, output) { 
