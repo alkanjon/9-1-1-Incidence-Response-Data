@@ -10,7 +10,7 @@ setwd("~/Desktop/INFO 201/9-1-1-Incidence-Response-Data")
 #source('')
 
 URI <- "https://data.seattle.gov/resource/pu5n-trf4.json"
-URI.Token <- "urMEfPn6KX0XAeZI6sTjOOAKDKylzmg8rrba"
+URI.Token <- "ky71McxIFKv1aPgDQr0yM0huK"
 response <- GET(URI)
 body <- content(response, "text")
 SPD.data <- fromJSON(body)
