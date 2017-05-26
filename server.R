@@ -3,6 +3,7 @@
 library(dplyr)
 library(httr)
 library(jsonlite)
+library(leaflet)
 
 # Read in data
 # setwd("~/Desktop/INFO 201/9-1-1-Incidence-Response-Data")
@@ -23,7 +24,7 @@ shinyServer(function(input, output) {
   
   output$incident.map <- renderLeaflet({
     leaflet() %>%
-      addTiles() %>%
+      addProviderTiles(providers$CartoDB.Positron) %>%
       setView(-122.35, 47.61, zoom = 11)
   })
   

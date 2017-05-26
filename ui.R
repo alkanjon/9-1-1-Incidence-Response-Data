@@ -1,6 +1,7 @@
 # import libraries
 library(shiny)
 library(plotly)
+library(leaflet)
 
 # shinyUI
 shinyUI(
@@ -21,11 +22,13 @@ shinyUI(
         leafletOutput("incident.map", height = "100%"),
         
         # panel for widgets
-        absolutePanel(id = "map-controls", top = 0, left = "auto", right = 40, bottom = "auto", width = 330, height = "100%",
+        absolutePanel(id = "map-controls", top = 0, left = "auto", right = 40, bottom = 0,
+                      
+          h2("Map Filters"),
           
           # filter by date
           sliderInput("year.slider",
-                      "Filter by Year",
+                      "Year",
                       min = 2010,
                       max = strtoi(format(Sys.Date(), "%Y")),
                       value = c(2016, 2017),
