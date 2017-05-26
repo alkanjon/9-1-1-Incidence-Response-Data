@@ -17,6 +17,12 @@ shinyUI(
           # filter by incident report
           
           # filter by date
+          sliderInput("year.slider",
+                      "Filter by Year",
+                      min = 2010,
+                      max = 2017,
+                      value = c(2016, 2017),
+                      sep = "")
         ),
         
         # plot
