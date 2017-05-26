@@ -1,44 +1,36 @@
-#ui.R
-
+# import libraries
 library(shiny)
 library(plotly)
-shinyUI(navbarPage('Electoral College',
-                   # Create a tab panel for your map
-                   tabPanel('Tab Title',
-                            titlePanel('Page Title'),
-                            # Create sidebar layout
-                            sidebarLayout(
-                              
-                              # Side panel for controls
-                              sidebarPanel(
-                                
-                                # Input to select variable to map
-                                selectInput()
-                              ),
-                              
-                              # Main panel
-                              mainPanel(
-                                plotlyOutput('')
-                              )
-                            )
-                   ), 
-                   
-                   # Create a tabPanel to show your scatter plot
-                   tabPanel('Tab Title',
-                            # Add a titlePanel to your tab
-                            titlePanel('Page Title'),
-                            
-                            # Create a sidebar layout for this tab (page)
-                            sidebarLayout(
-                              
-                              # Create a sidebarPanel for your controls
-                              sidebarPanel(
-                        
-                              ),
-                              
-                              mainPanel(
-                                plotlyOutput('')
-                              )
-                            )
-                   )
-))
+
+# shinyUI
+shinyUI(
+  navbarPage("SPD 911 Incidents",
+             
+    # tab for interactive map
+    tabPanel("Interactive Map",
+      sidebarLayout(
+        
+        # widgets
+        sidebarPanel(
+          # filter by event clearance
+          
+          # filter by incident report
+          
+          # filter by date
+        ),
+        
+        # plot
+        mainPanel(
+          plotOutput('')
+        )
+        
+      )
+    ),
+    
+    # tab for data breakdown / charts
+    tabPanel("Data Explorer",
+      # charts / descriptions
+      plotOutput('')
+    )
+  )
+)
