@@ -8,13 +8,20 @@ shinyUI(
              
     # tab for interactive map
     tabPanel("Interactive Map",
-      sidebarLayout(
+      
+      # div to fill screen height
+      div(class = "outer",
         
-        # widgets
-        sidebarPanel(
-          # filter by event clearance
-          
-          # filter by incident report
+        # use custom style.css file
+        tags$head(
+          includeCSS("style.css")
+        ),
+        
+        # interactive map
+        leafletOutput("incident.map", height = "100%"),
+        
+        # panel for widgets
+        absolutePanel(id = "map-controls", top = 0, left = "auto", right = 40, bottom = "auto", width = 330, height = "100%",
           
           # filter by date
           sliderInput("year.slider",
@@ -24,13 +31,7 @@ shinyUI(
                       value = c(2016, 2017),
                       step = 1,
                       sep = "")
-        ),
-        
-        # plot
-        mainPanel(
-          plotOutput('')
         )
-        
       )
     ),
     

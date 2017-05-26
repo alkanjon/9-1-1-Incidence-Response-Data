@@ -21,5 +21,11 @@ SPD.data <- flatten(SPD.data)
 # Start shinyServer
 shinyServer(function(input, output) { 
   
+  output$incident.map <- renderLeaflet({
+    leaflet() %>%
+      addTiles() %>%
+      setView(-122.35, 47.61, zoom = 11)
+  })
+  
 })
 
