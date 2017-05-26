@@ -20,8 +20,9 @@ shinyUI(
           sliderInput("year.slider",
                       "Filter by Year",
                       min = 2010,
-                      max = 2017,
+                      max = strtoi(format(Sys.Date(), "%Y")),
                       value = c(2016, 2017),
+                      step = 1,
                       sep = "")
         ),
         
