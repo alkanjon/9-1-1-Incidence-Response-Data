@@ -25,7 +25,7 @@ shinyServer(function(input, output) {
   output$incident.map <- renderLeaflet({
     leaflet() %>%
       addProviderTiles(providers$CartoDB.Positron) %>%
-      setView(-122.35, 47.61, zoom = 11)
+      setView(-122.28, 47.61, zoom = 12)
   })
   
 })
