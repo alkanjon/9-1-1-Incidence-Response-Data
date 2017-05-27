@@ -20,10 +20,9 @@ SPD.data <- flatten(SPD.data)
 
 
 # Start shinyServer
-shinyServer(function(input, output) { 
+shinyServer(function(input, output) {
   
-  output$incident.map <- renderLeaflet({
-
+  filteredData <- reactive({
     # make api request using user defined year range
     year.query.params <- list("$where" = paste0("event_clearance_date between '", input$year.slider[1], "-01-01T0:00:00' and '", input$year.slider[2], "-12-31T23:59:59'"))
     response <- GET(endpoint, query = year.query.params)
@@ -31,6 +30,11 @@ shinyServer(function(input, output) {
     yearly.data <- fromJSON(body)
     yearly.data <- flatten(yearly.data)
     
+    # coerce longitude and latitude to numerics
+    yearly.data <- mutate(yearly.data, longitude = as.numeric(longitude), latitude = as.numeric(latitude))
+  })
+  
+  output$incident.map <- renderLeaflet({
     # coerce longitude and latitude to numerics
     yearly.data <- mutate(yearly.data, longitude = as.numeric(longitude), latitude = as.numeric(latitude))
     
@@ -41,6 +45,12 @@ shinyServer(function(input, output) {
                        radius = 4,
                        stroke = FALSE) %>%
       setView(-122.28, 47.61, zoom = 12)
+  })
+  
+  observe({
+    leafletProxy("incident.map", data = filteredData()) %>%
+      clearMarkers() %>%
+      addCircleMarkers(~longitude, ~latitude, radius = 4, stroke = FALSE)
   })
   
 })
