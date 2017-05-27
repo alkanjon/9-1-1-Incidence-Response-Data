@@ -31,15 +31,9 @@ shinyServer(function(input, output) {
   
   # render map with default values
   output$incident.map <- renderLeaflet({
-    # coerce longitude and latitude to numerics
-    yearly.data <- mutate(yearly.data, longitude = as.numeric(longitude), latitude = as.numeric(latitude))
-    
     # plot points on map
-    leaflet(data = yearly.data) %>%
+    leaflet() %>%
       addProviderTiles(providers$CartoDB.Positron) %>%
-      addCircleMarkers(~longitude, ~latitude,
-                       radius = 4,
-                       stroke = FALSE) %>%
       setView(-122.28, 47.61, zoom = 12)
   })
   
