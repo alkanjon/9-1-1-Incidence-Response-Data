@@ -10,9 +10,9 @@ library(leaflet)
 #source('')
 #source('')
 
-URI <- "https://data.seattle.gov/resource/pu5n-trf4.json"
-URI.Token <- "ky71McxIFKv1aPgDQr0yM0huK"
-response <- GET(URI)
+endpoint <- "https://data.seattle.gov/resource/pu5n-trf4.json?"
+app.token <- "ky71McxIFKv1aPgDQr0yM0huK"
+response <- GET(endpoint)
 body <- content(response, "text")
 SPD.data <- fromJSON(body)
 SPD.data <- flatten(SPD.data)
@@ -23,8 +23,21 @@ SPD.data <- flatten(SPD.data)
 shinyServer(function(input, output) { 
   
   output$incident.map <- renderLeaflet({
-    leaflet() %>%
+
+    # make api request using user defined year range
+    year.query.params <- list("$where" = paste0("event_clearance_date between '", input$year.slider[1], "-01-01T0:00:00' and '", input$year.slider[2], "-01-01T0:00:00'"))
+    response <- GET(endpoint, query = year.query.params)
+    body <- content(response, "text")
+    yearly.data <- fromJSON(body)
+    yearly.data <- flatten(yearly.data)
+    
+    # coerce longitude and latitude to numerics
+    yearly.data <- mutate(yearly.data, longitude = as.numeric(longitude), latitude = as.numeric(latitude))
+    
+    # plot points on map
+    leaflet(data = yearly.data) %>%
       addProviderTiles(providers$CartoDB.Positron) %>%
+      addMarkers(~longitude, ~latitude) %>%
       setView(-122.28, 47.61, zoom = 12)
   })
   
