@@ -25,7 +25,7 @@ shinyServer(function(input, output) {
   output$incident.map <- renderLeaflet({
 
     # make api request using user defined year range
-    year.query.params <- list("$where" = paste0("event_clearance_date between '", input$year.slider[1], "-01-01T0:00:00' and '", input$year.slider[2], "-01-01T0:00:00'"))
+    year.query.params <- list("$where" = paste0("event_clearance_date between '", input$year.slider[1], "-01-01T0:00:00' and '", input$year.slider[2], "-12-31T23:59:59'"))
     response <- GET(endpoint, query = year.query.params)
     body <- content(response, "text")
     yearly.data <- fromJSON(body)
@@ -37,7 +37,9 @@ shinyServer(function(input, output) {
     # plot points on map
     leaflet(data = yearly.data) %>%
       addProviderTiles(providers$CartoDB.Positron) %>%
-      addMarkers(~longitude, ~latitude) %>%
+      addCircleMarkers(~longitude, ~latitude,
+                       radius = 4,
+                       stroke = FALSE) %>%
       setView(-122.28, 47.61, zoom = 12)
   })
   
