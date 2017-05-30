@@ -1,8 +1,9 @@
-#server.R
+#server.R 
 
 library(dplyr)
 library(httr)
 library(jsonlite)
+library(shiny)
 library(leaflet)
 
 # Read in data
@@ -27,6 +28,8 @@ shinyServer(function(input, output) {
     
     # coerce longitude and latitude to numerics
     yearly.data <- mutate(yearly.data, longitude = as.numeric(longitude), latitude = as.numeric(latitude))
+    
+    #filter 
   })
   
   # render map with default values
