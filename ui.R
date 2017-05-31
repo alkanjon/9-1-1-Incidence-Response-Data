@@ -57,7 +57,14 @@ shinyUI(
     tabPanel("Data Explorer",
       # charts / descriptions
       h2("Data Explorations"),
-      plotOutput('timeOfDayPlot')
+      plotOutput('timeOfDayPlot'),
+      p("The above graph details the hour of day (based on a 24-hour clock) at which events were cleared. Events have two clear peaks,
+        One in the early morning at roughly 0100, and one in the evening at 1800 hours. Crime is lowest in the later stages of the morning,
+        around 0600."),
+      br(),
+      plotOutput('bySectorPlot'),
+      p("The bar graph above shows the distribution of 911 events across Seattle PD's district sectors. Districts K and M see the highest rates of 911 events,
+        while districts 99, G, and S see lower rates.")
     )
   )
 )
