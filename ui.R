@@ -36,17 +36,17 @@ shinyUI(
                          sep = ""),
              
              selectInput("subgroup", label = h4("Incidence Subgroup"),
-                         choices = list("Select..." = 1, "Animal Complaints" = 2, "Assaults" = 3, "Auto Recoveries" = 4,
-                           "Auto Thefts" = 5, "Burglary Alarms (False)" = 6, "Car Prowl" = 7,
-                           "Casualties" = 8, "Commercial Burglaries" = 8, "Disturbances" = 9,
-                           "Fraud Calls" = 9, "Gun Calls" = 10, "Hazards" = 11, "Liquor Violations" = 12,
-                           "Mental Call" = 13, "Misc. Misdemeanors" = 14, "Narcotics Complaints" = 15,
-                           "Noise Disturbance" = 16, "Nuisance, Mischief Complaints" = 17,
-                           "Panic Alarms (False)" = 18, "Parking Violations" = 19, "Persons - Lost, Found, Missing" = 20,
-                           "Property - Missing, Found" = 21, "Property Damage" = 22, "Residential Burglaries" = 23,
-                           "Robbery" = 24, "Suspicious Circumstances" = 25, "Theft" = 26, "Threats, Harassment" = 27,
-                           "Traffic-Related Calls" = 28, "Trespass" = 29, "Vehicle Alarms (False)" = 30,
-                           "Vice Calls" = 31, "Warrant Calls" = 32),
+                         choices = list("SELECT..." = 1, "ANIMAL COMPLAINTS" = 2, "ASSAULTS" = 3, "AUTO RECOVERIES" = 4,
+                           "AUTO THEFTS" = 5, "BURGLARY ALARMS (FALSE)" = 6, "CAR PROWL" = 7,
+                           "CASUALTIES" = 8, "COMMERICAL BURGLARIES" = 8, "DISTURBANCES" = 9,
+                           "FRAUD CALLS" = 9, "GUN CALLS" = 10, "HAZARDS" = 11, "LIQUOR VIOLATIONS" = 12,
+                           "MENTAL CALL" = 13, "MISCELLANEOUS MISDEMEANORS" = 14, "NARCOTICS COMPLAINTS" = 15,
+                           "NOISE DISTURBANCE" = 16, "NUISANCE, MISCHIEF COMPLAINTS" = 17,
+                           "PANIC ALARMS (FALSE)" = 18, "PARKING VIOLATIONS" = 19, "PERSONS - LOST, FOUND, MISSING" = 20,
+                           "PROPERTY - MISSING, FOUND" = 21, "PROPERTY DAMAGE" = 22, "RESIDENTIAL BURGLARIES" = 23,
+                           "ROBBERY" = 24, "SUSPICIOUS CIRCUMSTANCES" = 25, "THEFT" = 26, "THREATS, HARASSMENT" = 27,
+                           "TRAFFIC-RELATED CALLS" = 28, "TRESPASS" = 29, "VEHICLE ALARMS (FALSE)" = 30,
+                           "VICE CALLS" = 31, "WARRANT CALLS" = 32),
                          selected = 1)
            )
        )
@@ -56,7 +56,8 @@ shinyUI(
     # tab for data breakdown / charts
     tabPanel("Data Explorer",
       # charts / descriptions
-      plotOutput('')
+      h2("Data Explorations"),
+      plotOutput('timeOfDayPlot')
     )
   )
 )
