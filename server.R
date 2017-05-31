@@ -30,6 +30,9 @@ static.data <- static.data %>% mutate(hour.of.day = hour(reformatted.date))
 #group data by hour of event clearance
 data.by.hour <- static.data %>% group_by(hour.of.day) %>% summarise(count = n()) 
 
+#group data by district sector
+data.by.sector <- static.data %>% group_by(district_sector) %>% summarise(count = n())
+
 # Start shinyServer
 shinyServer(function(input, output) {
   
@@ -69,9 +72,16 @@ shinyServer(function(input, output) {
   #Line plot of event clearances by hour of day
   output$timeOfDayPlot <- renderPlot({
     ggplot(data.by.hour, aes(x = hour.of.day, y = count)) + geom_point() + geom_line() + 
-      labs(x = "Hour of Day", y = "Frequency of Incidences", title = "911 Event Clearances by Hour of Day")
+      labs(x = "Hour of Day", y = "Frequency of Incidences", title = "911 Event Clearances by Hour of Day") +
+      xlim(0, 23) + ylim(0, 70)
     
     
+  })
+  
+  #Histogram of events, grouped by the district in which they occurred
+  output$bySectorPlot <- renderPlot({
+    ggplot(data.by.sector, aes(x = district_sector, y = count)) + geom_bar(stat = "identity") +
+      labs(x = "District Sector", y = "Frequency of Incidences", title = "911 Events by District Sector")
   })
   
 })
