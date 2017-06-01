@@ -64,7 +64,11 @@ shinyUI(
       br(),
       plotOutput('bySectorPlot'),
       p("The bar graph above shows the distribution of 911 events across Seattle PD's district sectors. Districts K and M see the highest rates of 911 events,
-        while districts 99, G, and S see lower rates.")
+        while districts 99, G, and S see lower rates."),
+      br(),
+      plotOutput("occurredEventsPlot"),
+      p("The graph above shows the number of occurrences for each type of events. Based on the graph
+        traffic related calls occur the most.")
     )
   )
 )

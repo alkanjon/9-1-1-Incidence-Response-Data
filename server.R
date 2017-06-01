@@ -84,5 +84,11 @@ shinyServer(function(input, output) {
       labs(x = "District Sector", y = "Frequency of Incidences", title = "911 Events by District Sector")
   })
   
+  output$occurredEventsPlot <- renderPlot({
+    ggplot(data = occurred.events, aes(x = event_clearance_group, y = count)) + geom_point(stat = "identity") +
+      theme_bw() +
+      theme(axis.text = element_text(angle = 90, hjust = 1)) +
+      labs(x = "Types of Events", y = "Number of Occurences", title = "Number of Occurence For Each Type Of Accidents.")
+  })
 })
 
