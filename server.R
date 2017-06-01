@@ -36,9 +36,6 @@ data.by.sector <- static.data %>% group_by(district_sector) %>% summarise(count 
 # group data by types of events
 occurred.events <- group_by(static.data, event_clearance_group) %>%
   summarise(count = n())
-
-#group data by time and subgroup
-time.sub <- group_by(static.data, event_clearance_group, hour.of.day) %>% summarise(count = n())
 # Start shinyServer
 shinyServer(function(input, output) {
   
@@ -46,6 +43,9 @@ shinyServer(function(input, output) {
   filteredData <- reactive({
     # make api request
     query.params <- list("$where" = paste0("event_clearance_date between '", input$year.slider[1], "-01-01T0:00:00' and '", input$year.slider[2], "-12-31T23:59:59'"))
+    if(input$subgroup != "SELECT...") {
+      query.params <- c(query.params, event_clearance_subgroup = input$subgroup[1])
+    }
     response <- GET(endpoint, query = query.params)
     body <- content(response, "text")
     yearly.data <- fromJSON(body)
@@ -96,16 +96,5 @@ shinyServer(function(input, output) {
       theme(axis.text = element_text(angle = 90, hjust = 1)) +
       labs(x = "Types of Events", y = "Number of Occurences", title = "Number of Occurence For Each Type Of Accidents.")
   })
-  
-  #Dotplot of subgroups vs time of incidence
-  output$subgroupVsTimePlot <- renderPlot({ 
-    ggplot(time.sub, aes(x = hour.of.day, y = event_clearance_group)) + geom_point(stat = "identity") + 
-      theme_bw()  +
-      labs(x = "Time of Incidence", y = "Subgroup", title = "Types of Incidence Based on Time of Occurence")
-    
-  })
-  
-  
-  
 })
 

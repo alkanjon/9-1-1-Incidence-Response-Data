@@ -36,18 +36,18 @@ shinyUI(
                          sep = ""),
              
              selectInput("subgroup", label = h4("Incidence Subgroup"),
-                         choices = list("SELECT..." = 1, "ANIMAL COMPLAINTS" = 2, "ASSAULTS" = 3, "AUTO RECOVERIES" = 4,
-                           "AUTO THEFTS" = 5, "BURGLARY ALARMS (FALSE)" = 6, "CAR PROWL" = 7,
-                           "CASUALTIES" = 8, "COMMERICAL BURGLARIES" = 8, "DISTURBANCES" = 9,
-                           "FRAUD CALLS" = 9, "GUN CALLS" = 10, "HAZARDS" = 11, "LIQUOR VIOLATIONS" = 12,
-                           "MENTAL CALL" = 13, "MISCELLANEOUS MISDEMEANORS" = 14, "NARCOTICS COMPLAINTS" = 15,
-                           "NOISE DISTURBANCE" = 16, "NUISANCE, MISCHIEF COMPLAINTS" = 17,
-                           "PANIC ALARMS (FALSE)" = 18, "PARKING VIOLATIONS" = 19, "PERSONS - LOST, FOUND, MISSING" = 20,
-                           "PROPERTY - MISSING, FOUND" = 21, "PROPERTY DAMAGE" = 22, "RESIDENTIAL BURGLARIES" = 23,
-                           "ROBBERY" = 24, "SUSPICIOUS CIRCUMSTANCES" = 25, "THEFT" = 26, "THREATS, HARASSMENT" = 27,
-                           "TRAFFIC-RELATED CALLS" = 28, "TRESPASS" = 29, "VEHICLE ALARMS (FALSE)" = 30,
-                           "VICE CALLS" = 31, "WARRANT CALLS" = 32),
-                         selected = 1)
+                         choices = list("SELECT...", "ANIMAL COMPLAINTS", "ASSAULTS", "AUTO RECOVERIES",
+                           "AUTO THEFTS", "BURGLARY ALARMS (FALSE)", "CAR PROWL",
+                           "CASUALTIES", "COMMERICAL BURGLARIES", "DISTURBANCES",
+                           "FRAUD CALLS", "GUN CALLS", "HAZARDS", "LIQUOR VIOLATIONS",
+                           "MENTAL CALL", "MISCELLANEOUS MISDEMEANORS", "NARCOTICS COMPLAINTS",
+                           "NOISE DISTURBANCE", "NUISANCE, MISCHIEF COMPLAINTS",
+                           "PANIC ALARMS (FALSE)", "PARKING VIOLATIONS", "PERSONS - LOST, FOUND, MISSING",
+                           "PROPERTY - MISSING, FOUND", "PROPERTY DAMAGE", "RESIDENTIAL BURGLARIES",
+                           "ROBBERY", "SUSPICIOUS CIRCUMSTANCES", "THEFT", "THREATS, HARASSMENT",
+                           "TRAFFIC-RELATED CALLS", "TRESPASS", "VEHICLE ALARMS (FALSE)",
+                           "VICE CALLS", "WARRANT CALLS"),
+                         selected = "SELECT...")
            )
        )
        
