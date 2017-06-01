@@ -69,6 +69,14 @@ shinyUI(
       plotOutput("occurredEventsPlot"),
       p("The graph above shows the number of occurrences for each type of events. Based on the graph
         traffic related calls occur the most.")
+    ),
+    
+    tabPanel("About the Data",
+             h2("Why SPD Data"),
+             p(""),
+             br(),
+             h2("Insights"),
+             p()
     )
   )
 )
