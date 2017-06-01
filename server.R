@@ -33,6 +33,9 @@ data.by.hour <- static.data %>% group_by(hour.of.day) %>% summarise(count = n())
 #group data by district sector
 data.by.sector <- static.data %>% group_by(district_sector) %>% summarise(count = n())
 
+# group data by types of events
+occurred.events <- group_by(static.data, event_clearance_group) %>%
+  summarise(count = n())
 # Start shinyServer
 shinyServer(function(input, output) {
   
