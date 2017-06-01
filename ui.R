@@ -68,7 +68,10 @@ shinyUI(
       br(),
       plotOutput("occurredEventsPlot"),
       p("The graph above shows the number of occurrences for each type of events. Based on the graph
-        traffic related calls occur the most.")
+        traffic related calls occur the most."),
+      br(), 
+      plotOutput("subgroupVsTimePlot"),
+      p("This graph shows the times that certain types of crimes occur at.")
     ),
     
     tabPanel("About the Data",
